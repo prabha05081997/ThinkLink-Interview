@@ -1,6 +1,6 @@
-package com.thinklink.interview.exception;
+package com.thinklink.cryptocurrencytracker.exception;
 
-import com.thinklink.interview.model.response.Message;
+import com.thinklink.cryptocurrencytracker.model.response.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -1,4 +1,4 @@
-package com.thinklink.interview.exception;
+package com.thinklink.cryptocurrencytracker.exception;
 
 public class ConflictException extends Exception {
 

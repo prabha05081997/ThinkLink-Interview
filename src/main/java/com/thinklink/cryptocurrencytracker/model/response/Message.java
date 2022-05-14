@@ -1,4 +1,4 @@
-package com.thinklink.interview.model.response;
+package com.thinklink.cryptocurrencytracker.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

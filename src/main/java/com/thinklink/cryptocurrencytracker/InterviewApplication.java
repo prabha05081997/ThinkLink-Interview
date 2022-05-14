@@ -1,4 +1,4 @@
-package com.thinklink.interview;
+package com.thinklink.cryptocurrencytracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
