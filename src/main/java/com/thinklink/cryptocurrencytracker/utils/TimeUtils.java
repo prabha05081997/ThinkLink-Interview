@@ -18,6 +18,11 @@ public class TimeUtils {
         return localDateFormat.parse( simpleDateFormat.format(new Date(timeInMillis)) );
     }
 
+    /**
+     * converts milliseconds to the Human readable date format. Also it sets the UTC zone.
+     * @param timeInMillis
+     * @return
+     */
     public static String getUtcTimeFromMillis(long timeInMillis) {
         ZonedDateTime zonedDateTime = Instant.ofEpochMilli(timeInMillis).atZone(ZoneOffset.UTC);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

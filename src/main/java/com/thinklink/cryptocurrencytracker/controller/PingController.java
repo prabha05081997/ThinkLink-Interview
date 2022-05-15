@@ -12,6 +12,12 @@ public class PingController {
 
     private final String PING_RESPONSE = "I Am Healthy";
 
+    /**
+     * This is a health check API
+     *
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/v1/ping")
     public ResponseEntity<String> ping() throws Exception {
         log.info("in ping");

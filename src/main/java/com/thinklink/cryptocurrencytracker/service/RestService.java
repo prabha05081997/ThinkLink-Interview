@@ -13,6 +13,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import static com.thinklink.cryptocurrencytracker.constants.CryptocurrencyConstants.*;
+
 @Service
 @Slf4j
 public class RestService {
@@ -36,8 +38,8 @@ public class RestService {
                     .setScheme("https")
                     .setHost("api.coingecko.com/api/v3")
                     .setPath("/simple/price")
-                    .setParameter("ids", "bitcoin")
-                    .setParameter("vs_currencies", "usd")
+                    .setParameter("ids", BITCOIN)
+                    .setParameter("vs_currencies", USD)
                     .setParameter("include_market_cap", "true")
                     .setParameter("include_24hr_vol", "true")
                     .setParameter("include_24hr_change", "true")

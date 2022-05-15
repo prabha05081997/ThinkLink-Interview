@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Map;
 
 @Data
 public class CoinData {

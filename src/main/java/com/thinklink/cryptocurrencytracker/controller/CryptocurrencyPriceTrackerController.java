@@ -17,6 +17,12 @@ public class CryptocurrencyPriceTrackerController {
     @Autowired
     private CryptocurrencyPriceTrackerService cryptocurrencyPriceTrackerService;
 
+    /**
+     * This is controller method for cron process
+     * 
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/v1/getPrice")
     public GenericResponse<BitcoinData> queryForCryptocurrencyPrice() throws Exception {
         log.info("in queryForCryptocurrencyPrice with token {}");
@@ -27,6 +33,15 @@ public class CryptocurrencyPriceTrackerController {
         return response;
     }
 
+    /**
+     * This is the controller method for prices API to fetch price from db based on date
+     *
+     * @param limit
+     * @param offset
+     * @param date
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/v1/prices")
     public GenericResponse<PricesResponse> queryCryptocurrencyListFromDb(@RequestParam("limit") int limit, @RequestParam("offset") int offset,
                                                                          @RequestParam("date") String date) throws Exception {
