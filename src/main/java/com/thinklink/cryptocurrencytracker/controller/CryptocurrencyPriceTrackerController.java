@@ -19,7 +19,7 @@ public class CryptocurrencyPriceTrackerController {
 
     /**
      * This is controller method for cron process
-     * 
+     *
      * @return
      * @throws Exception
      */
