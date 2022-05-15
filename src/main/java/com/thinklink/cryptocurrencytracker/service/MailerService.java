@@ -15,6 +15,14 @@ public class MailerService {
     private static String PASSWORD = "Manoj@svceit"; // GMail password
     private static String RECIPIENT = "prabha05081997@gmail.com";
 
+    /**
+     *
+     * This is a helper method which is used to send mail
+     *
+     * @param to - mail to be sent
+     * @param subject - subject of the mail
+     * @param body - body of the mail
+     */
     public void sendFromGMail(String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";

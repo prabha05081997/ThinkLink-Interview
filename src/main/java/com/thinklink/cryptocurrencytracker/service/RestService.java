@@ -3,7 +3,6 @@ package com.thinklink.cryptocurrencytracker.service;
 import com.google.gson.Gson;
 import com.thinklink.cryptocurrencytracker.exception.ServiceUnavailablityException;
 import com.thinklink.cryptocurrencytracker.model.BitcoinData;
-import com.thinklink.cryptocurrencytracker.model.CoinData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,12 @@ public class RestService {
     @Autowired
     private Gson gson;
 
+    /**
+     * This is helper service to send http request over the internet to get the current price for bitcoin
+     *
+     * @return
+     * @throws ServiceUnavailablityException
+     */
     public BitcoinData getCryptocurrencyPrice() throws ServiceUnavailablityException {
         log.info("in getCryptocurrencyPrice");
         try {

@@ -1,5 +1,6 @@
 package com.thinklink.cryptocurrencytracker.service;
 
+import com.thinklink.cryptocurrencytracker.exception.BadRequestException;
 import com.thinklink.cryptocurrencytracker.exception.ServiceUnavailablityException;
 import com.thinklink.cryptocurrencytracker.model.BitcoinData;
 import com.thinklink.cryptocurrencytracker.model.dao.CryptocurrencyPriceTracker;
@@ -18,7 +19,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +44,16 @@ public class CryptocurrencyPriceTrackerService {
     @Value("${mail.to}")
     private String toMailAddress;
 
+    /**
+     * This is a scheduled Cron process with the fixed interval of 30 seconds. It will get the bitcoin price in USD and insert the data
+     * in db, and from the environment varibles configured max and min values, this will compare the price range and send the mail to
+     * the configured user email.
+     *
+     * @return
+     * @throws ServiceUnavailablityException
+     */
     @Scheduled(fixedRate = 30000)
-    public BitcoinData queryForCryptocurrencyPrice() throws ServiceUnavailablityException, ParseException {
+    public BitcoinData queryForCryptocurrencyPrice() throws ServiceUnavailablityException {
         BitcoinData bitcoinData = restService.getCryptocurrencyPrice();
         log.info("bitcoinData {}", bitcoinData);
         BigDecimal price = bitcoinData.getBitcoinData().getUsd();
@@ -74,8 +82,25 @@ public class CryptocurrencyPriceTrackerService {
         return bitcoinData;
     }
 
-    public PricesResponse queryCryptocurrencyListFromDb(String date, int limit, int offset) throws ServiceUnavailablityException, ParseException {
+    /**
+     *
+     * This method will query all the price that's been stored over for a given date.
+     *
+     * @param date - date to be queried from db
+     * @param limit - limit for the result set
+     * @param offset - offset for the result set
+     * @return
+     *
+     * BadRequestException
+     */
+    public PricesResponse queryCryptocurrencyListFromDb(String date, int limit, int offset) throws BadRequestException {
         log.info("date {} limit {} offset {}", date, limit, offset);
+
+        if(date == null || date.equals("") || limit == 0 || offset == 0) {
+            log.error("invalid environment variables found");
+            throw new BadRequestException("invalid environment variables values found");
+        }
+
         Pageable pageable = PageRequest.of(offset, limit);
         Page<CryptocurrencyPriceTracker> cryptocurrencyPriceTrackerPage = cryptocurrencyPriceTrackerRepository.findBycoinPriceLastUpdatedAt(date, pageable);
         log.info("cryptocurrencyPriceTrackerPage {}", cryptocurrencyPriceTrackerPage);
