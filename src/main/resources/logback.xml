@@ -30,11 +30,11 @@
 
     <springProfile name="!prod">
 
-        <root level="all">
+        <root level="INFO">
             <appender-ref ref="console" />
         </root>
-        <logger name="com.digitap" additivity="false">
-            <level value="all" />
+        <logger name="com.thinklink" additivity="false">
+            <level value="INFO" />
             <appender-ref ref="ROLLING-FILE" />
             <appender-ref ref="console" />
         </logger>
@@ -46,7 +46,7 @@
         <root level="INFO">
             <appender-ref ref="console" />
         </root>
-        <logger name="com.digitap" additivity="false">
+        <logger name="com.thinklink" additivity="false">
             <level value="INFO" />
             <appender-ref ref="ROLLING-FILE" />
             <appender-ref ref="console" />

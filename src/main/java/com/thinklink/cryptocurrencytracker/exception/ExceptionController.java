@@ -39,6 +39,11 @@ public class ExceptionController {
         return new ResponseEntity<>(new Message(exception.getMessage(), 208), HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(ServiceUnavailablityException.class)
+    public ResponseEntity<Message> serviceUnavailabilityException(ServiceUnavailablityException exception) {
+        return new ResponseEntity<>(new Message(exception.getMessage(), 503), HttpStatus.FORBIDDEN);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Message> customValidationException(MethodArgumentNotValidException exception) {
         return new ResponseEntity<>(new Message(exception.getBindingResult().getFieldError().getDefaultMessage(), 400),

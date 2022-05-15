@@ -21,7 +21,7 @@ public class WebFilterConfiguration implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "*");
-
+        response.setHeader("Content-Type", "application/json");
         // Content-Type, Accept, X-Requested-With, remember-me, Authorization
         chain.doFilter(req, res);
         log.info("return from CORS filter");
