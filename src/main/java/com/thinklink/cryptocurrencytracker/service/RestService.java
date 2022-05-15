@@ -51,7 +51,7 @@ public class RestService {
 
             HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                log.error("Error while getting code model {}", response.body());
+                log.error("Error while getting crypto currency price {}", response.body());
                 throw new ServiceUnavailablityException("Error while getting crypto currency price");
             }
             String body = response.body();
